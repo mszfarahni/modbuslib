@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include "mod_crc.h"
-void modbus(uint8_t modbus_id,uint8_t * modbus_data,uint8_t modbus_data_len,uint8_t * ragiser,uint8_t *ragiser_trasmit,uint8_t * ragiser_trasmit_lan)
+void modbus(uint8_t modbus_id,uint8_t * modbus_data,uint8_t modbus_data_len,uint8_t * ragiser,uint8_t *data_tranmit,uint8_t * data_trasmit_lan)
 {
  
     void CRC_CHECK(uint8_t * modbus_data_crc,uint8_t modbus_data_len_crc,uint8_t * data_low,uint8_t * data_high)
@@ -34,7 +34,7 @@ void modbus(uint8_t modbus_id,uint8_t * modbus_data,uint8_t modbus_data_len,uint
             y=y+2;
         
             //ragiser_trasmit=data_send;
-            *ragiser_trasmit_lan=y; 
+            *data_trasmit_lan=y; 
             break;
         
         default:
@@ -43,8 +43,9 @@ void modbus(uint8_t modbus_id,uint8_t * modbus_data,uint8_t modbus_data_len,uint
     }
     void Read_Holding_Register()
     {
-        uint8_t start_addreas_ragister=(modbus_data[3]*256)+modbus_data[4];
-        uint8_t Quantity_addres_ragister=(modbus_data[5]*256)+modbus_data[6];//error 1 or 125
+        uint8_t start_addreas_ragister=(modbus_data[2]*256)+(modbus_data[3]);
+        printf("%d,%d",modbus_data[4],modbus_data[5]);
+        uint8_t Quantity_addres_ragister=(modbus_data[4]*256)+(modbus_data[5]);//error 1 or 125
         printf("%d",Quantity_addres_ragister);
         uint8_t data_read[Quantity_addres_ragister];
         int y=0;
