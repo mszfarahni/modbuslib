@@ -44,9 +44,7 @@ void modbus(uint8_t modbus_id,uint8_t * modbus_data,uint8_t modbus_data_len,uint
     void Read_Holding_Register()
     {
         uint8_t start_addreas_ragister=(modbus_data[2]*256)+(modbus_data[3]);
-        printf("%d,%d",modbus_data[4],modbus_data[5]);
         uint8_t Quantity_addres_ragister=(modbus_data[4]*256)+(modbus_data[5]);//error 1 or 125
-        printf("%d",Quantity_addres_ragister);
         uint8_t data_read[Quantity_addres_ragister];
         int y=0;
         for(int x=start_addreas_ragister;x<(start_addreas_ragister+Quantity_addres_ragister);x++,y++)
